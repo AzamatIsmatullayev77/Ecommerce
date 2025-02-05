@@ -1,13 +1,17 @@
 from django.contrib import admin
 from django.urls import path
 from ecommerce import views
+from config import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('grid/', views.grid, name='grid'),
-    path('detail/',views.product_detail, name='product_detail'),
+    path('detail/<int:pk>/', views.product_detail, name='product_detail'),
     path('customers/',views.customers, name='customers'),
     path('customers-detail/',views.customers_detail, name='customers_detail'),
     # path('',views.index,name='index'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
