@@ -12,15 +12,23 @@ admin.site.unregister(BatonTheme)
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
     list_display = ('product','image')
+    search_fields = ('product__name',)
 admin.site.register(Specification)
+
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ['name', 'price',]
+    search_fields = ['name',]
+    list_filter = ('name',)
+
+    # def Imagecount(self,product):
+    #     return product.image.count()
 
 
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
     list_display = ['name', 'email',]
+    search_fields = ['email',]
 
 
 
@@ -30,3 +38,4 @@ admin.site.register(AttributeValue)
 @admin.register(ProductAttribute)
 class ProductAttributeAdmin(admin.ModelAdmin):
     list_display = ['product', 'attribute',]
+    search_fields = ['product__name']
