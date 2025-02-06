@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.models import User, Group
-from ecommerce.models import Product, Customer,Attribute,AttributeValue,ProductAttribute,Image,Specification
+from ecommerce.models import Product, Customer,Attribute,AttributeValue,ProductAttribute,Image,Specification,ProductImage
 from baton.models import BatonTheme
 # Register your models here.
 
@@ -8,12 +8,9 @@ admin.site.unregister(Group)
 admin.site.unregister(User)
 admin.site.unregister(BatonTheme)
 # admin.site.register(Image)
+admin.site.register(ProductImage)
+admin.site.register(Image)
 
-@admin.register(Image)
-class ImageAdmin(admin.ModelAdmin):
-    list_display = ('product','image')
-    search_fields = ('product__name',)
-admin.site.register(Specification)
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -27,7 +24,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
-    list_display = ['name', 'email',]
+    list_display = ['name', 'email','Phone_number','Address','created_at']
     search_fields = ['email',]
 
 

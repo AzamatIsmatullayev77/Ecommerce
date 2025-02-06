@@ -132,7 +132,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 MEDIA_URL = 'media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'ecommerce/media/media/')  # `media/` papkasining asosiy yo‘li
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/media/')  # `media/` papkasining asosiy yo‘li
 
 
 # Default primary key field type
