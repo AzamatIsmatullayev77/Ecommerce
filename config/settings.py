@@ -34,8 +34,8 @@ SECRET_KEY = 'django-insecure-my%-rnsn7lv29*$5+803_@+iz%(nhrj*po94wnmu9i6)^6!rj-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
+ALLOWED_REDIRECT_HOSTS= ['*']
 
 # Application definition
 
@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ecommerce.apps.EcommerceConfig',
     'baton.autodiscover',
+    'user.apps.UserConfig',
 ]
 
 MIDDLEWARE = [
@@ -132,10 +133,13 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 MEDIA_URL = 'media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/media/')  # `media/` papkasining asosiy yo‘li
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/media/')
 
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+AUTH_USER_MODEL = 'user.User'

@@ -7,8 +7,9 @@ urlpatterns = [
 
        path('admin/', admin.site.urls),
        path('baton/', include('baton.urls')),
+       path('user/',include('user.urls'),name='user'),
 
-       path('',include('ecommerce.urls')),
+       path('',include('ecommerce.urls'),name='ecommerce'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # if settings.DEBUG:

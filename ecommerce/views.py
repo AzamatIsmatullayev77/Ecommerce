@@ -2,7 +2,7 @@ from itertools import product
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template.context_processors import media
-
+from django.views.decorators.csrf import csrf_protect
 from ecommerce.forms import CustomerModelForm, ProductModelForm
 from ecommerce.models import Product, ProductAttribute, Customer,Image
 
@@ -13,7 +13,7 @@ from ecommerce.models import Product, ProductAttribute, Customer,Image
 def index(request):
     search_query = request.GET.get('q','')
     products = Product.objects.all()
-    product_images = Image.objects.all()
+    product_images = Image.image
     product_attributes = ProductAttribute.objects.filter()
     if search_query:
         products = products.filter(name__icontains=search_query)

@@ -32,13 +32,15 @@ class Product(BaseModel):
         THREE = 3
         FOUR = 4
         FIVE = 5
+
     name = models.CharField(max_length=100)
-    comment=models.TextField(blank=True)
+    comment = models.TextField(blank=True)
     price = models.DecimalField(max_digits=14, decimal_places=2)
     description = models.TextField()
     is_available = models.BooleanField()
     discount = models.PositiveIntegerField(default=0)
-    quantity = models.PositiveIntegerField(default=0,null=True,blank=True)
+    quantity = models.PositiveIntegerField(default=0, null=True, blank=True)
+
     class Meta:
         ordering = ['my_order']
         verbose_name = 'product'
@@ -51,10 +53,11 @@ class Product(BaseModel):
 class Customer(BaseModel):
     name = models.CharField(max_length=100)
     email = models.EmailField()
-    Phone_number = PhoneNumberField(region="UZ",null=True,blank=True)
-    Address = models.TextField(null=True,blank=True)
+    Phone_number = PhoneNumberField(region="UZ", null=True, blank=True)
+    Address = models.TextField(null=True, blank=True)
     description = models.TextField()
     vat_number = models.IntegerField()
+
     class Meta:
         ordering = ['my_order']
         verbose_name = 'customer'
@@ -65,23 +68,14 @@ class Customer(BaseModel):
 
 
 class Image(BaseModel):
-    image = models.ImageField(upload_to='media/media/', blank=True,null=True)
+    image = models.ImageField(upload_to='media/', blank=True, null=True)
+    product= models.ForeignKey(Product, on_delete=models.CASCADE)
     class Meta:
         ordering = ['my_order']
+
     @property
     def get_absolute_url(self):
         return self.image.url
-class ProductImage(BaseModel):
-    image = models.ForeignKey(Image, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE,related_name='images')
-
-class Specification(BaseModel):
-    name = models.CharField(max_length=255)
-    description = models.TextField(null=True, blank=True)
-    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True, blank=True)
-
-    def __str__(self):
-        return self.name
 
 
 
@@ -100,7 +94,7 @@ class AttributeValue(BaseModel):
 
 
 class ProductAttribute(BaseModel):
-    product = models.ForeignKey(Product, on_delete=models.SET_NULL,related_name='product_attributes', null=True, blank=True)
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, related_name='product_attributes', null=True,
+                                blank=True)
     attribute = models.ForeignKey(Attribute, on_delete=models.SET_NULL, null=True, blank=True)
     attribute_value = models.ForeignKey(AttributeValue, on_delete=models.SET_NULL, null=True, blank=True)
-
